@@ -3,7 +3,7 @@ terraform {
     bucket         = "sujeeth-cloud-storage"
     key            = "project_demo/state_files/terraform.tfstate"
     region         = "us-east-1"
-    dynamodb_table = "lock-terraform-state"
+    use_lockfile   = true
     encrypt        = true
   }
 }
