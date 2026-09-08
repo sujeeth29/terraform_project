@@ -14,3 +14,10 @@ module "project_vpc" {
   enable_private_tier              = var.enable_private_tier
   env                              = var.env
 }
+
+module "public_server"{
+  source = "./modules/ec2"
+  env = var.env
+}
+
+ 
