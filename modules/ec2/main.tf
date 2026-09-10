@@ -21,6 +21,7 @@ resource "aws_vpc_security_group_egress_rule" "demo_project_pub_egress" {
     ip_protocol = "-1"
     from_port = 0
     to_port = 0
+    cidr_ipv4 = "0.0.0.0/0"
 }
 
 resource "aws_vpc_security_group_ingress_rule" "demo_project_pub_ingress" {
