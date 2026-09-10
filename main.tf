@@ -15,9 +15,9 @@ module "project_vpc" {
   env                              = var.env
 }
 
-# module "public_server"{
-#   source = "./modules/ec2"
-#   env = var.env
-# }
+module "server"{
+  source = "./modules/ec2"
+  env = var.env
+}
 
  

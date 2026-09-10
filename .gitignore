@@ -1,4 +1,6 @@
 # .gitignore
+qa_key.pem
+prod_key.pem
 
 # terraform working directory
 .terraform/
