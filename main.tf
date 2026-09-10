@@ -18,7 +18,7 @@ module "project_vpc" {
 module "server"{
   source = "./modules/ec2"
   env = var.env
-  public_subnet_id = module.project_vpc.demo_vpc_id
+  public_subnet_id = module.project_vpc.demo_public_subnet_id
   vpc_id = module.project_vpc.demo_vpc_id
 }
 
