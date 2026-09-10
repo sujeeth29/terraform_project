@@ -12,7 +12,7 @@ data "aws_ami" "amazon_linux" {
 }
 
 resource "aws_security_group" "demo_project_pub_sg" {
-    vpc_id = aws_vpc.demo_project_vpc.id
+    vpc_id = var.vpc_id
     description = "demo project public security group"
 }
 
@@ -37,7 +37,7 @@ resource "aws_instance" "demo_project_pub_inst" {
     instance_type = "t3.micro"
     key_name = "${var.env}_key"
     security_groups = [ aws_security_group.demo_project_pub_sg.id ]
-    subnet_id = aws_subnet.demo_project_public_subnet.id
+    subnet_id = var.public_subnet_id
     associate_public_ip_address = true
     tags = {
       Name = "${var.env}-pub_server"
