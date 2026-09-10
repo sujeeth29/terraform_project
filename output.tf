@@ -10,3 +10,7 @@
 # output "cognito_domain" {
 #   value = module.cognito_user_pool.cognito_domain
 # }
+
+output "public_server_ip" {
+    value = module.server.demo_project_pub_inst_public_ip
+}
