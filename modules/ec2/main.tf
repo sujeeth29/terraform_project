@@ -36,7 +36,7 @@ resource "aws_vpc_security_group_ingress_rule" "demo_project_pub_ingress" {
 resource "aws_instance" "demo_project_pub_inst" {
     ami = data.aws_ami.amazon_linux.id
     instance_type = "t3.micro"
-    key_name = "${var.env}_key"
+    key_name = "${var.env}-key"
     security_groups = [ aws_security_group.demo_project_pub_sg.id ]
     subnet_id = var.public_subnet_id
     associate_public_ip_address = true
