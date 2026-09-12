@@ -20,6 +20,9 @@ module "server"{
   env = var.env
   public_subnet_id = module.project_vpc.demo_public_subnet_id
   vpc_id = module.project_vpc.demo_vpc_id
+  private_subnet_id = module.project_vpc.demo_pri_subnet_id
+  public_subnet_ip_cidr = module.project_vpc.demo_public_ip_cidr
+  enable_private_server = var.enable_private_server
 }
 
  

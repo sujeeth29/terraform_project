@@ -45,5 +45,41 @@ resource "aws_instance" "demo_project_pub_inst" {
     }
 }
 
+resource "aws_security_group" "demo_project_pri_sg" {
+    count = var.enable_private_server ? 1 : 0
+    vpc_id = var.vpc_id
+    description = "private security group for private instance"
+}
+
+resource "aws_vpc_security_group_ingress_rule" "demo_project_pri_ingress" {
+    count = var.enable_private_server ? 1 : 0
+    security_group_id = aws_security_group.demo_project_pri_sg.id
+    ip_protocol = "tcp"
+    from_port = 22
+    to_port = 22
+    cidr_ipv4 = var.public_subnet_ip_cidr
+}
+
+resource "aws_vpc_security_group_egress_rule" "demo_project_pri_egress" {
+  count = var.enable_private_server ? 1 : 0
+  security_group_id = aws_security_group.demo_project_pri_sg.id
+  ip_protocol = "tcp"
+  from_port = 0
+  to_port = 0
+  cidr_ipv4 = "0.0.0.0/0"
+}
+
+resource "aws_instance" "demo_pri_instance" {
+    count = var.enable_private_server ? 1 : 0
+    ami = data.aws_ami.amazon_linux.id
+    key_name = "${var.env}-key"
+    instance_type = "t3.micro"
+    security_groups = [ aws_security_group.demo_project_pri_sg.id ]
+    subnet_id = var.private_subnet_id
+    associate_public_ip_address = false
+    tags = {
+      Name = "${var.env}-pri-server"
+    }
+}
 
 

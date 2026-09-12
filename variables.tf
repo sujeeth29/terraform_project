@@ -32,3 +32,7 @@ variable "enable_private_tier" {
 variable "demo_project_private_subnet_cidr" {
   type = string
 }
+
+variable "enable_private_server" {
+  type = bool
+}
